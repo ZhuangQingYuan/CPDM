@@ -1,0 +1,21 @@
+{
+    // 必须同时配置所有的文件.vscode/settings.json否则找不到路径
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}",
+        "${workspaceFolder}/Lib/**",
+        "${workspaceFolder}/RsDatasets/**",
+        "${workspaceFolder}/PretrainedWeights/**",
+        "${workspaceFolder}/SemiExp/**"  // 双星号通配符匹配所有子目录
+    ],
+    "python.autoComplete.extraPaths": [
+        "${workspaceFolder}",
+        "${workspaceFolder}/Lib",
+        "${workspaceFolder}/RsDatasets",
+        "${workspaceFolder}/PretrainedWeights/**",
+        "${workspaceFolder}/SemiExp/**"
+    ],
+    //最佳保留：你的实验在哪个文件夹执行的就添加一下路径然后重启vscode生效
+    "terminal.integrated.env.linux": {
+        "PYTHONPATH": "${workspaceFolder}:${workspaceFolder}/Lib:${workspaceFolder}/SemiExp"
+    }
+}
