@@ -17,5 +17,7 @@
     //最佳保留：你的实验在哪个文件夹执行的就添加一下路径然后重启vscode生效
     "terminal.integrated.env.linux": {
         "PYTHONPATH": "${workspaceFolder}:${workspaceFolder}/Lib:${workspaceFolder}/SemiExp"
-    }
+    },
+    "python-envs.defaultEnvManager": "ms-python.python:conda",
+    "python-envs.defaultPackageManager": "ms-python.python:conda"
 }
