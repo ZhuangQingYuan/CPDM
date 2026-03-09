@@ -1,6 +1,13 @@
 # CPDM
 
-CPDM: Achieving Superior Accuracy in Semi-Supervised Remote Sensing Segmentation
+CPDM: Class Prototypes With Dynamic Multidomain Mixed Perturbation Consistency for Semi-Supervised Image Segmentation
+
+Please contact the second author if you have any questions.
+
+Paper Link: https://ieeexplore.ieee.org/abstract/document/11301853
+
+Email: zpatrick7@163.com
+
 
 # Getting Started
 ## Install
