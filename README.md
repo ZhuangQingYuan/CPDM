@@ -43,4 +43,4 @@ python train.py
 We thank [WSCL](https://github.com/xiaoqiang-lu/WSCL.git), [LSST](https://github.com/xiaoqiang-lu/LSST.git), and [UniMatch](https://github.com/LiheYoung/UniMatch.git), for part of their codes, processed datasets, data partitions, and pretrained models.
 
 # 许可证
-本代码归属于清源OS，盗取必究
+欢迎各位引用论文并star，开源精神永存
