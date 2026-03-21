@@ -51,7 +51,29 @@ def generate_hybrid_cutmix(img_size, epoch, total_epochs, label_ratio):
     return mask
 
 def hybrid_cutmix_aug(conf_w, mask_w, data_s1, data_s2, epoch, total_epochs, label_ratio,dynamic_conf_threshold,fixed_conf_threshold):
-    # coming soon
+    """融合增强策略"""
+    b, c, h, w = data_s1.shape
+    device = data_s1.device
+    new_conf, new_mask, new_data = [], [], []
+
+    for i in range(b):
+        main_mask = generate_hybrid_cutmix((h, w), epoch, total_epochs, label_ratio).to(device)
+        
+        if fixed_conf_threshold is None:
+            conf_threshold = dynamic_conf_threshold + (1-dynamic_conf_threshold) * np.log(1 + total_epochs - epoch) / np.log(1 + total_epochs)
+        else:
+            conf_threshold = fixed_conf_threshold
+        conf_mask = (conf_w[i] < conf_threshold).float()
+
+        j = (i + 1) % b
+        used_mask = main_mask * (1 - conf_mask)
+        new_conf.append((conf_w[i] * used_mask + conf_w[j] * (1 - used_mask)).unsqueeze(0))
+        new_mask.append((mask_w[i] * used_mask + mask_w[j] * (1 - used_mask)).long().unsqueeze(0))
+        if i % 2 == 0:
+            mixed = data_s1[i] * used_mask + data_s2[j] * (1 - used_mask)
+        else:
+            mixed = data_s2[i] * used_mask + data_s1[j] * (1 - used_mask)
+        new_data.append(mixed.unsqueeze(0))
     
     return torch.cat(new_conf), torch.cat(new_mask), torch.cat(new_data)
 
